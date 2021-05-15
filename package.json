@@ -1,0 +1,38 @@
+{
+  "name": "appetite",
+  "version": "0.0.1",
+  "description": "appetize.io api wrapper",
+  "main": "index.js",
+  "author": "mpcarolin.dev@gmail.com",
+  "license": "MIT",
+  "scripts": {
+    "demo": "node index.js",
+    "test": "yarn jest"
+  },
+  "dependencies": {
+    "@keg-hub/cli-utils": "0.2.0",
+    "@keg-hub/jsutils": "8.6.0",
+    "@keg-hub/spawn-cmd": "0.1.2",
+    "axios": "^0.21.1",
+    "dotenv": "^9.0.2",
+    "form-data": "^4.0.0",
+    "module-alias": "^2.2.2",
+    "rimraf": "3.0.2",
+    "tar-fs": "2.1.1"
+  },
+  "devDependencies": {
+    "jest": "26.6.3"
+  },
+  "_moduleAliases": {
+    "ATRoot": ".",
+    "ATUtils": "src/utils",
+    "ATApi": "src/api"
+  },
+  "jest": {
+    "moduleNameMapper": {
+      "^ATRoot$": "<rootDir>$1",
+      "^ATUtils$": "<rootDir>/src/utils$1",
+      "^ATApi$": "<rootDir>/src/api"
+    }
+  }
+}
