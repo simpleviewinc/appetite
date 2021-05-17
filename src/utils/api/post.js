@@ -1,12 +1,11 @@
 const path = require('path')
 const axios = require('axios')
 
-const buildEndpoint = (token, version, endpoint) => {
-  return `https://${token}@api.appetize.io/v${version}/${endpoint}`
-}
+const buildEndpoint = (token, version, endpoint) => 
+  `https://${token}@api.appetize.io/v${version}/${endpoint}`
 
 /**
- * 
+ * Sends a post request to the Appetize api.
  * @param {Object} options
  * @returns 
  */

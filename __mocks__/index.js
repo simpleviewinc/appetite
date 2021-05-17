@@ -1,3 +1,4 @@
 module.exports = {
-  ...require('./axios')
+  ...require('./axios'),
+  ...require('./fs')
 }

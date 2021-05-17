@@ -1,4 +1,4 @@
-const http = require('ATUtils/http')
+const api = require('../utils/api')
 
 /**
  * @param {Object} options
@@ -6,11 +6,15 @@ const http = require('ATUtils/http')
  * @returns {Promise<Object>} the result of uploading the file to the appetize api
  */
 const upload = ({ filePath, platform, token, url }) => {
-  return http.post({
+  const { data, requestConfig } = api.buildRequestPayload(
+    { filePath, url, token }, 
+    { platform }
+  )
+
+  return api.post({
     token,
-    platform,
-    filePath,
-    url
+    data,
+    requestConfig,
   })
 }
 

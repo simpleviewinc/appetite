@@ -1,4 +1,4 @@
-const { post } = require('../post')
+const { post } = require('..')
 const { isValidUrl } = require('@keg-hub/jsutils')
 const axios = require('axios')
 
@@ -27,8 +27,6 @@ describe('post', () => {
     const result = await post(options)
 
     expect(result).toEqual(expectedResponse)
-
-
   })
 
   it('should build the right api uri', async () => {
