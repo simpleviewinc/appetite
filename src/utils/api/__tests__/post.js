@@ -14,14 +14,8 @@ describe('post', () => {
 
   const expectedResponse = { key: 123 }
 
-  beforeAll(() => {
-    axios.post.mockReturnValue(Promise.resolve(expectedResponse))
-  })
-
-  afterAll(() => {
-    jest.resetAllMocks()
-  })
-
+  beforeAll(() => axios.post.mockReturnValue(Promise.resolve(expectedResponse)))
+  afterAll(jest.resetAllMocks)
 
   it('should return the post response', async () => {
     const result = await post(options)
@@ -45,7 +39,7 @@ describe('post', () => {
       expect.stringContaining(options.publicKey)
     )
     expect(uri).toEqual(
-      expect.stringContaining(options.version)
+      expect.stringContaining('v' + options.version)
     )
   })
 })

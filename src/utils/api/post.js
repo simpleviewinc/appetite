@@ -14,7 +14,7 @@ const buildEndpoint = (token, version, endpoint) =>
     ? path.join(endpoint, publicKey)
     : endpoint 
 
-  const uri = buildEndpoint(token, apiEndpoint, version)
+  const uri = buildEndpoint(token, version, apiEndpoint)
 
   try {
     return await axios.post(uri, data, requestConfig)
