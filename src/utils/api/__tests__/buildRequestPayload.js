@@ -23,17 +23,4 @@ describe('buildRequestPayload', () => {
     expect(requestConfig && typeof requestConfig).toEqual('object')
     expect(typeof requestConfig.headers).toEqual('object')
   })
-
-  it('should use the token', () => {
-    const url = 'foo.bar.com'
-    const token = '123'
-    let requestConfig = buildRequestPayload({ url, token }).requestConfig
-    expect(requestConfig.headers.Authorization).toEqual(
-      expect.stringContaining(token)
-    )
-
-    requestConfig = buildRequestPayload({ url }).requestConfig
-    expect(requestConfig.headers.Authorization).not.toBeDefined()
-  })
-
 })

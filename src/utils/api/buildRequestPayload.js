@@ -7,13 +7,10 @@ const FormData = require('form-data')
  * @param {string} token 
  * @returns 
  */
-const buildRequestConfig = (form, token) => ({
+const buildRequestConfig = form => ({
   maxContentLength: Infinity,
   maxBodyLength: Infinity,
-  headers: ({
-    ...form.getHeaders(),
-    ...(token && { Authorization: `Bearer ${token}`})
-  })
+  headers: form.getHeaders(),
 })
 
 /**
