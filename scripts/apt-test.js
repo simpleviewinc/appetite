@@ -9,7 +9,7 @@ const {
   URL,
 } = process.env
 
-if (!BUILD_PATH || !PLATFORM || !TOKEN || !URL)
+if ((!BUILD_PATH && !URL) || !PLATFORM || !TOKEN)
   throw new Error('Ensure all required envs are set.')
 
 ;(async () => {
