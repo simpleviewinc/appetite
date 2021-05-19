@@ -9,14 +9,14 @@
   "scripts": {
     "demo": "node index.js",
     "test": "yarn jest --config ./configs/jest.config.js",
-    "apt:test": "node ./scripts/apt-test.js"
+    "apt:test": "node ./scripts/apt-test.js",
+    "clean:full": "rimraf yarn.lock && rimraf package.lock && rimraf node_modules && yarn install"
   },
   "dependencies": {
     "@keg-hub/jsutils": "8.6.0",
     "axios": "^0.21.1",
     "form-data": "^4.0.0",
-    "rimraf": "3.0.2",
-    "tar-fs": "2.1.1"
+    "rimraf": "3.0.2"
   },
   "devDependencies": {
     "jest": "26.6.3",
