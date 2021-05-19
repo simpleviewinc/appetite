@@ -1,5 +1,5 @@
 {
-  "name": "@simpleviewinc/appetite",
+  "name": "@keg-hub/appetite",
   "version": "0.0.1",
   "description": "appetize.io api wrapper",
   "main": "index.js",
