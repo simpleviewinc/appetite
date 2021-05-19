@@ -4,9 +4,12 @@ A node-js wrapper around the appetize api
 
 ## Usage
 
+### Install
+`yarn add @keg-hub/appetite`
+
 ### Upload
 ```js
-const { upload } = require('@simpleviewinc/appetite')
+const { upload } = require('@keg-hub/appetite')
 
 // set either url or filePath, not both
 const response = await upload({
