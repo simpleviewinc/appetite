@@ -1,11 +1,11 @@
 const api = require('../utils/api')
 const { isStr } = require('@keg-hub/jsutils')
 const { buildForm } = require('../utils/form')
+const fs = require('fs')
 
 /**
  * @param {Object} options
- * @param {String} options.filePath - path to zipped simulator build
- * @returns {Promise<Object>} the result of uploading the file to the appetize api
+ * @returns {Promise<Object>} the result of updating the file to the appetize api
  */
 const update = (options={}) => {
   const { 
@@ -23,7 +23,11 @@ const update = (options={}) => {
   if (!isStr(token))
     throw new Error('token must be defined')
 
-  const data = buildForm({ filePath, url, ...params })
+  const data = buildForm({ 
+    ...(filePath && { file: fs.createReadStream(filePath) }),
+    url,
+    ...params
+  })
 
   const requestConfig = api.buildRequestConfig(data, token)
 

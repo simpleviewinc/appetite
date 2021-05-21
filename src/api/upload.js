@@ -20,7 +20,9 @@ const upload = (options={}) => {
 
   const data = buildForm({ 
     ...(filePath && { file: fs.createReadStream(filePath) }),
-    ...filterObj({ url, platform, ...params }, (_, v) => exists(v))
+    url,
+    platform,
+    ...params
   })
 
   const requestConfig = api.buildRequestConfig(data, token)
