@@ -1,4 +1,5 @@
 module.exports = {
   ...require('./upload'),
-  ...require('./getAll')
+  ...require('./getAll'),
+  ...require('./get'),
 }

@@ -1,11 +1,15 @@
 const api = require('../utils/api')
+const { isStr } = require('@keg-hub/jsutils')
 
 /**
  * @param {Object} options
- * @param {String} options.filePath - path to zipped simulator build
- * @returns {Promise<Object>} the result of uploading the file to the appetize api
+ * @param {String} options.token - appetize token
+ * @returns {Promise<Object>} the response, including a list of all apps on appetize
  */
-const getAll = ({ token }) => api.get({ token, endpoint: 'apps' })
+const getAll = ({ token }) => {
+  if (!isStr(token)) throw new Error('token must be defined')
+  api.get({ token })
+}
 
 module.exports = {
   getAll

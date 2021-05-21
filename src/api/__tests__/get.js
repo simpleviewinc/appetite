@@ -1,24 +1,27 @@
 jest.mock('../../utils/api/request')
 
-const { it, expect } = require('@jest/globals')
 const { request } = require('../../utils/api/request')
-const { getAll } = require('../getAll')
+const { get } = require('../')
+const { it, expect } = require('@jest/globals')
 
 describe('getAll', () => {
 
   it('should call get with the token ', async () => {
     const options = { 
       token: '123',
+      publicKey: '456'
     }
 
-    await getAll(options)
+    await get(options)
 
     expect(request).toHaveBeenCalledWith(
-      expect.objectContaining({ token: options.token })
+      expect.objectContaining({ ...options })
     )
   })
 
   it('should reject bad input', () => {
-    expect(() => getAll({})).toThrow()
+    expect(() => get({})).toThrow()
+    expect(() => get({ publicKey: '123'})).toThrow()
+    expect(() => get({ token: '123'})).toThrow()
   })
 })
