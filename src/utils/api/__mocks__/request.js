@@ -8,5 +8,6 @@ const get = jest.fn(opts => request({ method: 'get', ...opts }))
 module.exports = {
   request,
   post,
-  get
+  get,
+  delete: jest.fn(opts => request({ method: 'delete', ...opts }))
 }

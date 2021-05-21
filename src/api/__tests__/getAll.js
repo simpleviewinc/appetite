@@ -1,6 +1,5 @@
 jest.mock('../../utils/api/request')
 
-const { it, expect } = require('@jest/globals')
 const { request } = require('../../utils/api/request')
 const { getAll } = require('../getAll')
 

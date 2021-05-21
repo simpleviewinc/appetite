@@ -15,6 +15,7 @@
     "demo:upsert": "node ./scripts/apt-test.js upsert",
     "demo:getAll": "node ./scripts/apt-test.js getAll",
     "demo:get": "node ./scripts/apt-test.js get",
+    "demo:remove": "node ./scripts/apt-test.js remove",
     "clean:full": "rimraf yarn.lock && rimraf package.lock && rimraf node_modules && yarn install"
   },
   "dependencies": {

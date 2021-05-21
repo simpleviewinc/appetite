@@ -33,11 +33,9 @@ const { buildUri } = require('./buildUri')
   }
 }
 
-const post = (options={}) => request({ method: 'post', ...options })
-const get = (options={}) => request({ method: 'get', ...options })
-
 module.exports = {
   request,
-  post,
-  get
+  post: (options={}) => request({ method: 'post', ...options }),
+  get: (options={}) => request({ method: 'get', ...options }),
+  delete: (options={}) => request({ method: 'delete', ...options })
 }

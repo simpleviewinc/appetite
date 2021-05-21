@@ -1,7 +1,6 @@
 jest.mock('../../utils/api/request')
 jest.mock('form-data')
 jest.mock('fs')
-const { expect } = require('@jest/globals')
 const fs = require('fs')
 const { post } = require('../../utils/api/request')
 const { upload } = require('../upload')

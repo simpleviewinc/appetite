@@ -5,4 +5,5 @@ module.exports = {
   ...require('./getAll'),
   ...require('./get'),
   ...require('./find'),
+  ...require('./remove'),
 }

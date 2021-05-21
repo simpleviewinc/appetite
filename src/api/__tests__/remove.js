@@ -1,21 +1,21 @@
 jest.mock('../../utils/api/request')
 
 const { request } = require('../../utils/api/request')
-const { get } = require('../')
+const { remove } = require('..')
 
-describe('getAll', () => {
+describe('remove', () => {
 
-  it('should call get with the token ', async () => {
+  it('should call api.delete with the token and publicKey', async () => {
     const options = { 
       token: '123',
       publicKey: '456'
     }
 
-    const response = await get(options)
+    const response = await remove(options)
     expect(response).toBeDefined()
 
     expect(request).toHaveBeenCalledWith(
-      expect.objectContaining({ ...options })
+      expect.objectContaining({ ...options, method: 'delete' })
     )
   })
 
