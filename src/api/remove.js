@@ -2,10 +2,11 @@ const api = require('../utils/api')
 const { isStr } = require('@keg-hub/jsutils')
 
 /**
+ * Deletes an app identified by publicKey
  * @param {Object} options
  * @param {String} options.token - appetize dev token
  * @param {String} options.publicKey - appetize app public key identifier
- * @returns {Promise<Object>} a promise resolving to the response, including the app identified by publicKey
+ * @returns {Promise<Object>} a promise resolving to the api response
  */
 const remove = ({ token, publicKey }) => {
   if (!isStr(token))

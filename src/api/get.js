@@ -2,6 +2,7 @@ const api = require('../utils/api')
 const { isStr } = require('@keg-hub/jsutils')
 
 /**
+ * Gets a single app build as identified by its publicKey
  * @param {Object} options
  * @param {String} options.token - appetize dev token
  * @param {String} options.publicKey - appetize app public key identifier

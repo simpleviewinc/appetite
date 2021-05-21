@@ -20,7 +20,7 @@ const find = async ({ platform, note, noteFields, token }) => {
 
   const  { data: { data: allBuilds }} = await getAll({ token })
 
-  return noteFields && Object.keys(noteFields)
+  return isObj(noteFields) && Object.keys(noteFields)
     ? findBuildByNoteFields(
       allBuilds, 
       platform,
