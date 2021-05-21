@@ -1,3 +1,4 @@
 module.exports = {
-  ...require('./upload')
+  ...require('./upload'),
+  ...require('./getAll')
 }

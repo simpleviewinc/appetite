@@ -9,7 +9,8 @@
   "scripts": {
     "demo": "node index.js",
     "test": "yarn jest --config ./configs/jest.config.js",
-    "apt:test": "node ./scripts/apt-test.js",
+    "demo:upload": "node ./scripts/apt-test.js upload",
+    "demo:getAll": "node ./scripts/apt-test.js getAll",
     "clean:full": "rimraf yarn.lock && rimraf package.lock && rimraf node_modules && yarn install"
   },
   "dependencies": {

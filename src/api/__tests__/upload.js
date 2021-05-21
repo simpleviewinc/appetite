@@ -1,8 +1,8 @@
-jest.mock('../../utils/api/post')
+jest.mock('../../utils/api/request')
 jest.mock('form-data')
 jest.mock('fs')
 const fs = require('fs')
-const { post } = require('../../utils/api/post')
+const { post } = require('../../utils/api/request')
 const { upload } = require('../upload')
 
 describe('upload', () => {

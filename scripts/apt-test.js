@@ -1,6 +1,5 @@
 require('dotenv').config()
-
-const { upload } = require('../src/api')
+const { upload, getAll } = require('../src/api')
 
 const {
   BUILD_PATH,
@@ -13,7 +12,11 @@ if ((!BUILD_PATH && !URL) || !PLATFORM || !TOKEN)
   throw new Error('Ensure all required envs are set.')
 
 ;(async () => {
-  const response = await upload({
+  const [ , , type ] = process.argv
+
+  const fn = ({ upload, getAll })[type]
+
+  const response = await fn({
     url: URL,
     filePath: BUILD_PATH,
     platform: PLATFORM,

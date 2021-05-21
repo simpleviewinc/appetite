@@ -1,17 +1,6 @@
 const fs = require('fs')
 const FormData = require('form-data')
-
-/**
- * builds the request config object to be used with axios 
- * @param {FormData} form 
- * @param {string} token 
- * @returns 
- */
-const buildRequestConfig = form => ({
-  maxContentLength: Infinity,
-  maxBodyLength: Infinity,
-  headers: form.getHeaders(),
-})
+const { buildRequestConfig } = require('./buildRequestConfig')
 
 /**
  * Builds a form object
@@ -28,7 +17,7 @@ const buildForm = (data={}) => {
 }
 
 /**
- * Get the api request payload for a filePath upload
+ * Get the api request payload for a filePath upload/update
  * @param {Object} options
  * @param {string} options.filePath
  * @param {string} options.token

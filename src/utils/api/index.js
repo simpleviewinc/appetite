@@ -1,4 +1,4 @@
 module.exports = {
-  ...require('./post'),
+  ...require('./request'),
   ...require('./buildRequestPayload'),
 }
