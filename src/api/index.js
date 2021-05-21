@@ -4,4 +4,5 @@ module.exports = {
   ...require('./upsert'),
   ...require('./getAll'),
   ...require('./get'),
+  ...require('./find'),
 }

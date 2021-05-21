@@ -10,7 +10,9 @@
     "demo": "node index.js",
     "test": "yarn jest --config ./configs/jest.config.js",
     "demo:upload": "node ./scripts/apt-test.js upload",
+    "demo:find": "node ./scripts/apt-test.js find",
     "demo:update": "node ./scripts/apt-test.js update",
+    "demo:upsert": "node ./scripts/apt-test.js upsert",
     "demo:getAll": "node ./scripts/apt-test.js getAll",
     "demo:get": "node ./scripts/apt-test.js get",
     "clean:full": "rimraf yarn.lock && rimraf package.lock && rimraf node_modules && yarn install"

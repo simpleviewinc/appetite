@@ -5,7 +5,7 @@ jest.mock('fs')
 const { mockBuilds } = require('../../utils/api/__mocks__/builds')
 
 jest.setMock('../getAll', {
-  getAll: jest.fn(() => Promise.resolve({ data: mockBuilds }))
+  getAll: jest.fn(() => Promise.resolve({ data: { data: mockBuilds }}))
 })
 
 jest.setMock('../update', { update: jest.fn(() => Promise.resolve({})) })

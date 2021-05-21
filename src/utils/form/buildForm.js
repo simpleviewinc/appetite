@@ -1,5 +1,5 @@
 const FormData = require('form-data')
-const { exists } = require('@keg-hub/jsutils')
+const { isStr } = require('@keg-hub/jsutils')
 
 /**
  * Builds a form object
@@ -10,7 +10,7 @@ const buildForm = (data={}) => {
   return Object
     .entries(data)
     .reduce((form, [ key, value ]) => {
-      exists(value) && form.append(key, value)
+      isStr(value) && form.append(key, value)
       return form
     }, new FormData())
 }

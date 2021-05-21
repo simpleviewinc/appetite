@@ -1,8 +1,13 @@
-const { getAll } = require('./getAll')
+const { find } = require('./find')
 const { upload } = require('./upload')
 const { update } = require('./update')
-const { findBuild, findBuildByNoteFields } = require('../utils/api')
 
+/**
+ * Uploads the payload if no build exists with a matching note and platform,
+ * otherwise updates the existing build
+ * @param {Object} options 
+ * @returns 
+ */
 const upsert = async (options={}) => {
   const { 
     token, 
@@ -11,17 +16,7 @@ const upsert = async (options={}) => {
     platform,
   } = options
 
-  const { data: allBuilds } = await getAll({ token })
-
-  const foundBuild = noteFields
-    ? findBuildByNoteFields(
-      allBuilds, 
-      platform,
-      noteFields, 
-    )
-    : note
-      ? findBuild(allBuilds, { note, platform })
-      : null
+  const foundBuild = await find({ platform, token, note, noteFields })
 
   return foundBuild
     ? update({ ...options, publicKey: foundBuild.publicKey })
