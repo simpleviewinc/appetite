@@ -1,11 +1,15 @@
 const api = require('../utils/api')
-const { isStr, filterObj, exists } = require('@keg-hub/jsutils')
+const { isStr } = require('@keg-hub/jsutils')
 const { buildForm } = require('../utils/form')
 const fs = require('fs')
 
 /**
  * @param {Object} options
  * @param {String} options.filePath - path to zipped simulator build
+ * @param {String} options.url - url to hosted simulator build
+ * @param {String} options.token - appetize dev token
+ * @param {String} options.platform - ios/android
+ * @param {...&} options.rest - any other fields to include in the post form
  * @returns {Promise<Object>} the result of uploading the file to the appetize api
  */
 const upload = (options={}) => {

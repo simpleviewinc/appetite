@@ -9,6 +9,7 @@
   "scripts": {
     "demo": "node index.js",
     "test": "yarn jest --config ./configs/jest.config.js",
+    "test:e2e": "node ./scripts/e2e.js",
     "demo:upload": "node ./scripts/apt-test.js upload",
     "demo:find": "node ./scripts/apt-test.js find",
     "demo:update": "node ./scripts/apt-test.js update",

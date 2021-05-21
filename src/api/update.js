@@ -3,9 +3,16 @@ const { isStr } = require('@keg-hub/jsutils')
 const { buildForm } = require('../utils/form')
 const fs = require('fs')
 
+
 /**
  * @param {Object} options
- * @returns {Promise<Object>} the result of updating the file to the appetize api
+ * @param {String} options.filePath - path to zipped simulator build
+ * @param {String} options.url - url to hosted simulator build
+ * @param {String} options.token - appetize dev token
+ * @param {String} options.platform - ios/android
+ * @param {String} options.publicKey - public key of the simulator build to update
+ * @param {...&} options.rest - any other fields to include in the post form
+ * @returns {Promise<Object>} the result of updating the build on the appetize api
  */
 const update = (options={}) => {
   const { 

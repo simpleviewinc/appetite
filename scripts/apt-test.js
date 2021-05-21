@@ -14,26 +14,9 @@ const {
 if ((!BUILD_PATH && !URL) || !PLATFORM || !TOKEN)
   throw new Error('Ensure all required envs are set.')
 
-// parses command-line arguments
-const parseArgs = () => {
-  const [ , , type, ...rest ] = process.argv
-
-  let publicKey = PUBLIC_KEY;
-  let note = NOTE;
-  if (type === 'upsert') {
-    note = rest[0] || NOTE
-  }
-  else {
-    publicKey = rest[0] || PUBLIC_KEY
-    note = rest[1] || NOTE
-  }
-
-  return { publicKey, note, type }
-}
-
 ;(async () => {
 
-  const { type, note, publicKey } = parseArgs()
+  const [ , , type, publicKey=PUBLIC_KEY ] = process.argv
 
   const response = await api[type]({
     url: URL,
@@ -41,7 +24,7 @@ const parseArgs = () => {
     platform: PLATFORM,
     token: TOKEN,
     publicKey,
-    note,
+    note: NOTE,
     noteFields: {
       branch: BRANCH
     }

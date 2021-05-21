@@ -8,6 +8,8 @@ const { findBuild, findBuildByNoteFields } = require('../utils/api')
  * @param {Object} options
  * @param {String} options.token - appetize dev token
  * @param {String} options.publicKey - appetize app public key identifier
+ * @param {String} options.note - note to search by, and to include in upload/update
+ * @param {String} options.noteFields - note fields to search by, and to include in upload/update
  * @returns {Promise<Object?>} a promise resolving to the response, including the app identified by publicKey
  */
 const find = async ({ platform, note, noteFields, token }) => {
