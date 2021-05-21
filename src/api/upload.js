@@ -1,12 +1,16 @@
 const api = require('../utils/api')
-const { isStr } = require('@keg-hub/jsutils')
+const { isStr, filterObj, exists } = require('@keg-hub/jsutils')
+const { buildForm } = require('../utils/form')
+const fs = require('fs')
 
 /**
  * @param {Object} options
  * @param {String} options.filePath - path to zipped simulator build
  * @returns {Promise<Object>} the result of uploading the file to the appetize api
  */
-const upload = ({ filePath, platform, token, url }) => {
+const upload = (options={}) => {
+  const { filePath, platform, token, url, ...params } = options
+
   if (!isStr(filePath) && !isStr(url))
     throw new Error('Either filePath or url must be defined')
   if (!isStr(platform))
@@ -14,10 +18,12 @@ const upload = ({ filePath, platform, token, url }) => {
   if (!isStr(token))
     throw new Error('token must be defined')
 
-  const { data, requestConfig } = api.buildRequestPayload(
-    { filePath, url, token }, 
-    { platform }
-  )
+  const data = buildForm({ 
+    ...(filePath && { file: fs.createReadStream(filePath) }),
+    ...filterObj({ url, platform, ...params }, (_, v) => exists(v))
+  })
+
+  const requestConfig = api.buildRequestConfig(data, token)
 
   return api.post({
     token,
