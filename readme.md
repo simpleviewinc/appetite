@@ -108,6 +108,7 @@ const response = await remove({
 ## Testing
 * Unit: `yarn test` 
 * Functional: `yarn test:e2e`
-  * this test will require you to create a `.env.` file in the repo's root directory
-  * see the `example.env` file for the expected variables to put in your `.env`
+  * this test will require you to set some ENVS 
+    * it's easiest to create a `.env` file in the repo's root directory
+    * see the `example.env` file for the expected variables to put there
   * this will test creating, finding, updating, and deleting a single app using your Appetize account, live
