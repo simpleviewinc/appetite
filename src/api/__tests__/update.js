@@ -8,7 +8,8 @@ describe('update', () => {
 
   const options = { 
     token: '123',
-    publicKey: 'abc'
+    publicKey: 'abc',
+    url: 'my.url.com'
   }
 
   it('should update a build on the appetizer api', async () => {

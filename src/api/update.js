@@ -8,13 +8,22 @@ const { buildForm } = require('../utils/form')
  * @returns {Promise<Object>} the result of uploading the file to the appetize api
  */
 const update = (options={}) => {
-  const { token, publicKey, ...params } = options
+  const { 
+    token, 
+    publicKey, 
+    filePath, 
+    url, 
+    ...params 
+  } = options
+
+  if (!isStr(filePath) && !isStr(url))
+    throw new Error('Either filePath or url must be defined')
   if (!isStr(publicKey))
     throw new Error('publicKey must be defined')
   if (!isStr(token))
     throw new Error('token must be defined')
 
-  const data = buildForm(params)
+  const data = buildForm({ filePath, url, ...params })
 
   const requestConfig = api.buildRequestConfig(data, token)
 

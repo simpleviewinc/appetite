@@ -12,7 +12,7 @@ if ((!BUILD_PATH && !URL) || !PLATFORM || !TOKEN)
   throw new Error('Ensure all required envs are set.')
 
 ;(async () => {
-  const [ , , type, publicKey ] = process.argv
+  const [ , , type, publicKey, note ] = process.argv
 
   const fn = api[type]
 
@@ -21,7 +21,8 @@ if ((!BUILD_PATH && !URL) || !PLATFORM || !TOKEN)
     filePath: BUILD_PATH,
     platform: PLATFORM,
     token: TOKEN,
-    publicKey
+    publicKey,
+    note
   })
 
   console.log('RESPONSE: \n', JSON.stringify(response.data, null, 2))
