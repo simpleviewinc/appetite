@@ -17,7 +17,8 @@ describe('upload', () => {
       token: '123',
     }
 
-    await upload(options)
+    const response = await upload(options)
+    expect(response).toBeDefined()
 
     expect(post).toHaveBeenCalledWith(
       expect.objectContaining({
@@ -35,7 +36,7 @@ describe('upload', () => {
     expect(() => upload({ token: '123', url: '123'})).toThrow()
   })
 
-  it('should upload a url to the appetizer api', async () => {
+  it('should try to upload a url to the appetizer api', async () => {
     const options = { 
       url: 'foo/bar',
       filePath: null,

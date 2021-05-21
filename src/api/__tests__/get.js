@@ -12,7 +12,8 @@ describe('getAll', () => {
       publicKey: '456'
     }
 
-    await get(options)
+    const response = await get(options)
+    expect(response).toBeDefined()
 
     expect(request).toHaveBeenCalledWith(
       expect.objectContaining({ ...options })

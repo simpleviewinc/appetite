@@ -1,5 +1,5 @@
 const api = require('../utils/api')
-const { validate, isStr } = require('@keg-hub/jsutils')
+const { isStr } = require('@keg-hub/jsutils')
 
 /**
  * @param {Object} options

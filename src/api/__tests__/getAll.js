@@ -11,7 +11,8 @@ describe('getAll', () => {
       token: '123',
     }
 
-    await getAll(options)
+    const response = await getAll(options)
+    expect(response).toBeDefined()
 
     expect(request).toHaveBeenCalledWith(
       expect.objectContaining({ token: options.token })

@@ -1,5 +1,5 @@
 require('dotenv').config()
-const { upload, getAll } = require('../src/api')
+const api = require('../src/api')
 
 const {
   BUILD_PATH,
@@ -14,7 +14,7 @@ if ((!BUILD_PATH && !URL) || !PLATFORM || !TOKEN)
 ;(async () => {
   const [ , , type, publicKey ] = process.argv
 
-  const fn = ({ upload, getAll })[type]
+  const fn = api[type]
 
   const response = await fn({
     url: URL,

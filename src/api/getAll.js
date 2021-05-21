@@ -8,7 +8,7 @@ const { isStr } = require('@keg-hub/jsutils')
  */
 const getAll = ({ token }) => {
   if (!isStr(token)) throw new Error('token must be defined')
-  api.get({ token })
+  return api.get({ token })
 }
 
 module.exports = {
