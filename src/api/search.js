@@ -8,24 +8,24 @@ const { findBuild, findBuildByMetadata } = require('../utils/api')
  * @param {Object} options
  * @param {String} options.platform - ios/android
  * @param {String} options.note - note to search by
- * @param {String} options.metadata - note fields to search by
+ * @param {String} options.meta - note fields to search by
  * @param {String} options.token - appetize dev token
  * @returns {Promise<Array<Object>>} a promise resolving to an array of builds matching the search params
  */
-const search = async ({ platform, note, metadata, token }) => {
+const search = async ({ platform, note, meta, token }) => {
 
-  if (!isStr(note) && !isObj(metadata))
-    throw new Error('Note string or metadata object must be defined')
+  if (!isStr(note) && !isObj(meta))
+    throw new Error('`note` string or `meta` object must be defined')
   if (!isStr(platform))
     throw new Error('Platform must be defined')
 
   const  { data: { data: allBuilds }} = await getAll({ token })
 
-  return isObj(metadata) && Object.keys(metadata)
+  return isObj(meta) && Object.keys(meta)
     ? findBuildByMetadata(
       allBuilds, 
       platform,
-      metadata, 
+      meta
     )
     : note
       ? findBuild(allBuilds, { note, platform })

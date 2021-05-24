@@ -8,26 +8,26 @@ const { isObj } = require('@keg-hub/jsutils')
  * otherwise updates the existing build
  * @param {Object} options
  * @param {String} options.token - appetize dev token
- * @param {String} options.payload - values to use during the upload or update
- * @param {String} options.payload.filePath - path to zipped simulator build
- * @param {String} options.payload.url - url to hosted simulator build
- * @param {String} options.payload.platform - ios/android
- * @param {Object?} options.payload.metadata - (optional) upsert will compare the entries in this object against the json-parsed "note" string of existing builds
- * @param {...&} options.payload.* - any other fields to include in the upload/update
+ * @param {String} options.filePath - path to zipped simulator build, used in upload/update
+ * @param {String} options.url - url to hosted simulator build, used in upload/update
+ * @param {String} options.platform - (ios/android) platform used in upload/update
+ * @param {Object?} options.meta - (optional) upsert will compare the entries in this object against the json-parsed "note" string of existing builds
+ * @param {...&} options.* - any other fields to include in the upload/update
  * @param {SearchParams} options.search - values to use when searching for an existing build
  * @param {String?} options.search.platform - platform to search by
  * @param {String?} options.search.note - note to search by
- * @param {Object?} options.search.metadata - note fields to search by
+ * @param {Object?} options.search.meta - note fields to search by
  * @returns {Promise<Object>} the result of uploading or updating the file with the appetize api
  */
 const upsert = async (options={}) => {
   const { 
     token, 
-    payload,
+    ...payload
   } = options
 
   if (!isObj(options.search))
     throw new Error('"search" must be an object with your search params')
+
   if (!isObj(payload))
     throw new Error('"payload" must be an object with your upload / update data')
 

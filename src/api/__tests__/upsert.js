@@ -17,13 +17,11 @@ const { upsert, update, upload } = require('../')
 
 const options = {
   token: '123',
-  payload: {
-    platform: 'ios',
-    url: 'wow',
-  },
+  platform: 'ios',
+  url: 'wow',
   search: {
     platform: 'ios',
-    metadata: {
+    meta: {
       branch: 'my-branch'
     }
   }
@@ -48,7 +46,7 @@ describe('upsert', () => {
       ...options,
       search: {
         ...options.search,
-        metadata: {
+        meta: {
           branch: 'branch-for-new-build'
         }
       }
@@ -60,14 +58,12 @@ describe('upsert', () => {
   it('should upload, checking the note string', async () => {
     const response = await upsert({
       ...options,
-      payload: {
-        platform: 'android',
-        note: 'wow',
-      },
+      platform: 'android',
+      note: 'wow',
       search: {
         platform: 'android',
         note: 'wow',
-        metadata: undefined
+        meta: undefined
       }
     })
 
@@ -78,10 +74,8 @@ describe('upsert', () => {
   it('should update, checking the note string', async () => {
     const response = await upsert({
       ...options,
-      payload: {
-        platform: 'android',
-        note: mockBuilds[2].note,
-      },
+      platform: 'android',
+      note: mockBuilds[2].note,
       search: {
         platform: 'android',
         note: mockBuilds[2].note,

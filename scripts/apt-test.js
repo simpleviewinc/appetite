@@ -25,7 +25,7 @@ if ((!BUILD_PATH && !URL) || !PLATFORM || !TOKEN)
     token: TOKEN,
     publicKey,
     note: NOTE,
-    metadata: {
+    meta: {
       branch: BRANCH
     },
   })

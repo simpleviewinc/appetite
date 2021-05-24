@@ -11,22 +11,20 @@ const {
 if ((!BUILD_PATH && !URL) || !PLATFORM || !TOKEN)
   throw new Error('Ensure all required envs are set.')
 
-const metadata = {
+const meta = {
   branch: 'some-branch'
 }
 const platform = PLATFORM
 
 const options = {
   token: TOKEN,
-  payload: {
-    url: URL,
-    filePath: BUILD_PATH,
-    platform,
-    metadata,
-  },
+  url: URL,
+  filePath: BUILD_PATH,
+  platform,
+  meta,
   search: {
     platform,
-    metadata,
+    meta,
   }
 }
 

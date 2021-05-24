@@ -12,19 +12,17 @@ const response = await upsert({
   token: '123456',
 
   // upload or update a build using these parameters
-  payload: {
-    url: 'some.url.to.simulator.build.com'
-    platform: 'ios',
-    metadata: {
-      branch: 'my-branch',
-    },
-    disabled: true,
+  url: 'some.url.to.simulator.build.com'
+  platform: 'ios',
+  meta: {
+    branch: 'my-branch',
   },
+  ...*: <any other update/upload field (see the Appetize docs)>,
 
   // searches for a build where platform=ios and note='{"branch":"my-branch"}'
   search: {
     platform: 'ios',
-    metadata: {
+    meta: {
       branch: 'my-branch',
     }
   }
@@ -47,7 +45,7 @@ const response = await upload({
   platform: <ios or android>,
   token: <your appetize api token>
   note: <note field>,
-  metadata: <object to be stringified for the note field, unless "note" param was defined>,
+  meta: <object to be stringified for the note field, unless "note" param was defined>,
   ....rest: <any other fields to include in the post form>
 })
 ```
@@ -64,7 +62,7 @@ const response = await update({
   platform: <ios or android>,
   token: <your appetize api token>
   note: <note field>,
-  metadata: <object to be stringified for the note field, unless "note" param was defined>,
+  meta: <object to be stringified for the note field, unless "note" param was defined>,
   ....rest: <any other fields to include in the post form>
 })
 ```
@@ -77,7 +75,7 @@ const { upsert } = require('@keg-hub/appetite')
 const response = await upsert({
   token: <your appetize api token>,
   search: <fields to search for existing builds. Same as `search`>
-  payload: <fields used for uploading/updating a build. Same params as `upload`>
+  ...*: <fields used for uploading/updating a build. Same params as `upload`>
 })
 ```
 
@@ -88,7 +86,7 @@ const { search } = require('@keg-hub/appetite')
 // searches for all builds matching the parameters
 const builds = await search({
   note: <note field of an existing app build to search by>,
-  metadata: <note fields of an existing app build to search by>,
+  meta: <note fields of an existing app build to search by>,
   platform: <ios or android>,
   token: <your appetize api token>
 })
@@ -117,10 +115,10 @@ const response = await remove({
 ```
 
 ## Notes
-* Methods like `search` accept an optional `metadata` parameter
+* Methods like `search` accept an optional `meta` parameter
 * If this parameter is included, it will treat the "note" field as a json object string
-* For example, `search` will look for an existing build whose "note" value is a json object string containing the fields included in `metadata`
-* `upload` and `update` will stringify the `metadata` object and set that as the value of the "note" field in the uploaded/updated build
+* For example, `search` will look for an existing build whose "note" value is a json object string containing the fields included in `meta`
+* `upload` and `update` will stringify the `meta` object and set that as the value of the "note" field in the uploaded/updated build
 
 ## Testing
 * Unit: `yarn test` 

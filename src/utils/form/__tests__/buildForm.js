@@ -17,7 +17,7 @@ describe('buildForm', () => {
     const obj = {
       a: 'foo',
       b: 'bar',
-      metadata: {
+      meta: {
         baz: 'boom'
       }
     }
@@ -26,7 +26,7 @@ describe('buildForm', () => {
 
     expect(form).toEqual({
       ...pickKeys(obj, ['a', 'b']),
-      note: JSON.stringify(obj.metadata)
+      note: JSON.stringify(obj.meta)
     })
 
   })
@@ -36,7 +36,7 @@ describe('buildForm', () => {
       a: 'foo',
       b: 'bar',
       note: 'wow',
-      metadata: {
+      meta: {
         baz: 'boom'
       }
     }
@@ -44,7 +44,7 @@ describe('buildForm', () => {
     const form = buildForm(obj)
 
     expect(form).toEqual(
-      omitKeys(obj, ['metadata'])
+      omitKeys(obj, ['meta'])
     )
   })
 })

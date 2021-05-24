@@ -4,13 +4,13 @@ const { isStr } = require('@keg-hub/jsutils')
 /**
  * @param {Object} data 
  * @returns {Object} new object with data's entries, but serializing any entries
- * that need it (currently only data.metadata)
+ * that need it (currently only data.meta)
  */
 const serializeEntries = data => {
   const note = data.note
     ? data.note
-    : data.metadata
-      ? JSON.stringify(data.metadata)
+    : data.meta
+      ? JSON.stringify(data.meta)
       : null
   
   return {
