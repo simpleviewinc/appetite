@@ -11,14 +11,22 @@ const {
 if ((!BUILD_PATH && !URL) || !PLATFORM || !TOKEN)
   throw new Error('Ensure all required envs are set.')
 
+const metadata = {
+  branch: 'some-branch'
+}
+const platform = PLATFORM
+
 const options = {
-  url: URL,
-  filePath: BUILD_PATH,
-  platform: PLATFORM,
   token: TOKEN,
-  note: JSON.stringify({ branch: 'some-branch'}),
-  noteFields: {
-    branch: 'some-branch'
+  payload: {
+    url: URL,
+    filePath: BUILD_PATH,
+    platform,
+    metadata,
+  },
+  search: {
+    platform,
+    metadata,
   }
 }
 
@@ -34,21 +42,18 @@ const create = async () => {
   state.uploaded = result.data
 }
 
-const find = async () => {
-  console.log('Finding app...')
-  const result = await api.find(options)
+const search = async () => {
+  console.log('Searching apps...')
+  const [ result ] = await api.search({ token: options.token, ...options.search})
   if (result.publicKey !== state.uploaded.publicKey) {
     console.error({ result, state })
-    throw new Error('Find failed')
+    throw new Error('Search failed')
   }
 }
 
 const update = async () => {
   console.log('Updating app...')
-  const result = await api.upsert({
-    ...options,
-    publicKey: state.uploaded.publicKey
-  })
+  const result = await api.upsert(options)
   if (
     result.status !== 200 || 
     parseInt(result.data.versionCode) !== (parseInt(state.uploaded.versionCode) + 1)
@@ -73,12 +78,24 @@ const remove = async () => {
 const wait = time => new Promise(res => setTimeout(res, time))
 
 ;(async () => {
+  let success = true
+  try {
     await create()
     await wait(1000)
-    await find()
+    await search()
     await wait(1000)
     await update()
     await wait(1000)
-    await remove()
-    console.log('===============\nSuccess!\n===============')
+  }
+  catch (err) {
+    success = false
+    console.error(err)
+  }
+  finally {
+    state.uploaded && await remove()
+  }
+
+  success 
+    ? console.log('===============\nSuccess!\n===============')
+    : process.exit(1)
 })()

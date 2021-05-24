@@ -4,6 +4,6 @@ module.exports = {
   ...require('./upsert'),
   ...require('./getAll'),
   ...require('./get'),
-  ...require('./find'),
+  ...require('./search'),
   ...require('./remove'),
 }

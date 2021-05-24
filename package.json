@@ -11,7 +11,7 @@
     "test": "yarn jest --config ./configs/jest.config.js",
     "test:e2e": "node ./scripts/e2e.js",
     "demo:upload": "node ./scripts/apt-test.js upload",
-    "demo:find": "node ./scripts/apt-test.js find",
+    "demo:search": "node ./scripts/apt-test.js search",
     "demo:update": "node ./scripts/apt-test.js update",
     "demo:upsert": "node ./scripts/apt-test.js upsert",
     "demo:getAll": "node ./scripts/apt-test.js getAll",

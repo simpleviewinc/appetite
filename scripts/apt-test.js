@@ -25,13 +25,13 @@ if ((!BUILD_PATH && !URL) || !PLATFORM || !TOKEN)
     token: TOKEN,
     publicKey,
     note: NOTE,
-    noteFields: {
+    metadata: {
       branch: BRANCH
-    }
+    },
   })
 
   console.log(
     'RESULT: \n', 
-    JSON.stringify(type === 'find' ? response : response.data, null, 2)
+    JSON.stringify(type === 'search' ? response : response.data, null, 2)
   )
 })()

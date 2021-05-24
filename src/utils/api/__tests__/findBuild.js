@@ -1,9 +1,9 @@
-const { findBuild, findBuildByNoteFields } = require('../')
+const { findBuild, findBuildByMetadata } = require('../')
 const { mockBuilds } = require('../__mocks__/builds')
 
 describe('findBuild', () => {
   it('should find the match', () => {
-    const build = findBuild(
+    const [ build ] = findBuild(
       mockBuilds, 
       {
         note: mockBuilds[1].note,
@@ -14,9 +14,9 @@ describe('findBuild', () => {
   })
 })
 
-describe('findBuildByNoteFields', () => {
+describe('findBuildByMetadata', () => {
   it('should find the match by key', () => {
-    const build = findBuildByNoteFields(
+    const [ build ] = findBuildByMetadata(
       mockBuilds,
       'ios',
       { 

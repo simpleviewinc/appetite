@@ -8,7 +8,7 @@ const { identity, isObj } = require('@keg-hub/jsutils')
  * @returns 
  */
 const findBuild = (builds, expectedFields={}, parsers={}) => 
-  builds.find(build => {
+  builds.filter(build => {
     return Object.entries(expectedFields).every(
       ([key, value]) => {
         const parser = parsers[key] || identity
@@ -41,10 +41,10 @@ const tryParse = (note, key) => {
  * @param {Array<Object>} builds
  * @param {String} options.platform - ios/android
  * @param {Object} options.expectedFields - fields expected in the note object
- * @returns {Object} - the found build, or null
+ * @returns {Array<Object>} - matching builds
  */
-const findBuildByNoteFields = (builds, platform, expectedFields={}) => {
-  return builds.find(build => {
+const findBuildByMetadata = (builds, platform, expectedFields={}) => {
+  return builds.filter(build => {
     if (build.platform !== platform) return false
     return Object.entries(expectedFields).every(
       ([key, value]) => tryParse(build.note, key) === value
@@ -52,4 +52,4 @@ const findBuildByNoteFields = (builds, platform, expectedFields={}) => {
   })
 }
 
-module.exports = { findBuild, findBuildByNoteFields }
+module.exports = { findBuild, findBuildByMetadata }
