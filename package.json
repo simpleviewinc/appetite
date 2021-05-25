@@ -1,6 +1,6 @@
 {
   "name": "@keg-hub/appetite",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "appetize.io api wrapper",
   "main": "index.js",
   "author": "mpcarolin.dev@gmail.com",
@@ -9,7 +9,14 @@
   "scripts": {
     "demo": "node index.js",
     "test": "yarn jest --config ./configs/jest.config.js",
-    "apt:test": "node ./scripts/apt-test.js",
+    "test:e2e": "node ./scripts/e2e.js",
+    "demo:upload": "node ./scripts/apt-test.js upload",
+    "demo:search": "node ./scripts/apt-test.js search",
+    "demo:update": "node ./scripts/apt-test.js update",
+    "demo:upsert": "node ./scripts/apt-test.js upsert",
+    "demo:getAll": "node ./scripts/apt-test.js getAll",
+    "demo:get": "node ./scripts/apt-test.js get",
+    "demo:remove": "node ./scripts/apt-test.js remove",
     "clean:full": "rimraf yarn.lock && rimraf package.lock && rimraf node_modules && yarn install"
   },
   "dependencies": {

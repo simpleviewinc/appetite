@@ -1,24 +1,37 @@
 require('dotenv').config()
-
-const { upload } = require('../src/api')
+const api = require('../src/api')
 
 const {
   BUILD_PATH,
   PLATFORM,
   TOKEN,
   URL,
+  BRANCH,
+  NOTE,
+  PUBLIC_KEY
 } = process.env
 
 if ((!BUILD_PATH && !URL) || !PLATFORM || !TOKEN)
   throw new Error('Ensure all required envs are set.')
 
 ;(async () => {
-  const response = await upload({
+
+  const [ , , type, publicKey=PUBLIC_KEY ] = process.argv
+
+  const response = await api[type]({
     url: URL,
     filePath: BUILD_PATH,
     platform: PLATFORM,
-    token: TOKEN
+    token: TOKEN,
+    publicKey,
+    note: NOTE,
+    meta: {
+      branch: BRANCH
+    },
   })
 
-  console.log('RESPONSE: \n', JSON.stringify(response.data, null, 2))
+  console.log(
+    'RESULT: \n', 
+    JSON.stringify(type === 'search' ? response : response.data, null, 2)
+  )
 })()

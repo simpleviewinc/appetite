@@ -1,10 +1,6 @@
-const post = jest.fn()
-const get = jest.fn()
-const put = jest.fn()
+const axios = jest.fn()
+axios.post = jest.fn()
+axios.get = jest.fn()
+axios.put = jest.fn()
 
-const methods = { post, get, put }
-
-module.exports = {
-  default: methods,
-  ...methods
-}
+module.exports = axios
