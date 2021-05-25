@@ -1,6 +1,6 @@
 {
   "name": "@keg-hub/appetite",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "appetize.io api wrapper",
   "main": "index.js",
   "author": "mpcarolin.dev@gmail.com",
