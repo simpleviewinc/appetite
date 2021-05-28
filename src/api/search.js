@@ -17,7 +17,7 @@ const search = async ({ platform, note, meta, token }) => {
   if (!isStr(note) && !isObj(meta))
     throw new Error('`note` string or `meta` object must be defined')
   if (!isStr(platform))
-    throw new Error('Platform must be defined')
+    throw new Error('Platform must be a string')
 
   const  { data: { data: allBuilds }} = await getAll({ token })
 

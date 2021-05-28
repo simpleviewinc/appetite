@@ -19,18 +19,12 @@ const { buildUri } = require('./buildUri')
 
   const url = buildUri(token, version, endpoint, publicKey)
 
-  try {
-    return await axios({
-      method,
-      url, 
-      data, 
-      ...requestConfig
-    })
-  }
-  catch (err) {
-    console.error(err)
-    return null
-  }
+  return await axios({
+    method,
+    url, 
+    data, 
+    ...requestConfig
+  })
 }
 
 module.exports = {
